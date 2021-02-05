@@ -5,6 +5,7 @@
  * @date 2012-2020
  * @license GPLv3, see 'LICENSE' file
  * @desc Forked on 7-Nov-2018 from my privately and TUM-PhD-developed "tlibs" project (https://github.com/t-weber/tlibs).
+ * @see http://seal.cern.ch/documents/minuit/mnusersguide.pdf
  */
 
 #ifndef __TLIBS2_FITTER_H__
@@ -552,7 +553,7 @@ bool minimise_expr(const std::string& func, const std::vector<std::string>& vecP
 // interpolation
 
 /**
- * see: http://mathworld.wolfram.com/BernsteinPolynomial.html
+ * @see http://mathworld.wolfram.com/BernsteinPolynomial.html
  */
 template<typename T> T bernstein(int i, int n, T t)
 {
@@ -561,7 +562,7 @@ template<typename T> T bernstein(int i, int n, T t)
 }
 
 /**
- * see: http://mathworld.wolfram.com/BezierCurve.html
+ * @see http://mathworld.wolfram.com/BezierCurve.html
  */
 template<class t_vec, typename T=typename t_vec::value_type>
 t_vec bezier(const t_vec* P, std::size_t N, T t)
@@ -580,7 +581,7 @@ t_vec bezier(const t_vec* P, std::size_t N, T t)
 
 
 /**
- * see: http://mathworld.wolfram.com/B-Spline.html
+ * @see http://mathworld.wolfram.com/B-Spline.html
  */
 template<typename T>
 T bspline_base(int i, int j, T t, const std::vector<T>& knots)
@@ -606,7 +607,7 @@ T bspline_base(int i, int j, T t, const std::vector<T>& knots)
 
 
 /**
- * see: http://mathworld.wolfram.com/B-Spline.html
+ * @see http://mathworld.wolfram.com/B-Spline.html
  */
 template<class t_vec, typename T=typename t_vec::value_type>
 t_vec bspline(const t_vec* P, std::size_t N, T t, const std::vector<T>& knots)
@@ -761,7 +762,6 @@ public:
 		return lerp<T,T>((*iterLower)[1], (*iter2)[1], xpos);
 	}
 };
-
 
 
 // ----------------------------------------------------------------------------

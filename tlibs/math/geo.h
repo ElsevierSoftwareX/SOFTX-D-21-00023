@@ -30,6 +30,11 @@ namespace math = boost::math;
 
 template<typename T> class Line;
 
+
+/**
+ * analytical geometry of a plane
+ * @see (Stoecker 1999), chapter "Analytische Geometrie".
+ */
 template<typename T> class Plane
 {
 public:
@@ -154,6 +159,7 @@ public:
 
 	/**
 	 * "Lotfußpunkt"
+	 * @see e.g. https://de.wikipedia.org/wiki/Lot_(Mathematik)
 	 */
 	t_vec GetDroppedPerp(const t_vec& vecP, T *pdDist=0) const
 	{
@@ -199,7 +205,7 @@ public:
 
 	/**
 	 * plane-plane intersection
-	 * http://mathworld.wolfram.com/Plane-PlaneIntersection.html
+	 * @see http://mathworld.wolfram.com/Plane-PlaneIntersection.html
 	 */
 	bool intersect(const Plane<T>& plane2, Line<T>& lineRet,
 		T eps = tl::get_epsilon<T>()) const
@@ -230,7 +236,7 @@ public:
 
 	/**
 	 * intersection point of three planes
-	 * http://mathworld.wolfram.com/Plane-PlaneIntersection.html
+	 * @see http://mathworld.wolfram.com/Plane-PlaneIntersection.html
 	 */
 	bool intersect(const Plane<T>& plane2, const Plane<T>& plane3, t_vec& ptRet,
 		T eps = tl::get_epsilon<T>()) const
@@ -264,6 +270,10 @@ public:
 
 
 
+/**
+ * analytical geometry of a line
+ * @see (Stoecker 1999), chapter "Analytische Geometrie".
+ */
 template<typename T> class Line
 {
 public:
@@ -300,6 +310,7 @@ public:
 
 	/**
 	 * distance to a point
+	 * @see e.g.: (Arens 2015), p. 711
 	 */
 	T GetDist(const t_vec& vecPt) const
 	{
@@ -319,6 +330,7 @@ public:
 
 	/**
 	 * distance to line l1
+	 * @see e.g.: (Arens 2015), p. 711
 	 */
 	T GetDist(const Line<T>& l1) const
 	{
@@ -361,6 +373,7 @@ public:
 
 	/**
 	 * "Lotfußpunkt"
+	 * @see e.g. https://de.wikipedia.org/wiki/Lot_(Mathematik)
 	 */
 	t_vec GetDroppedPerp(const t_vec& vecP, T *pdDist=0) const
 	{
@@ -407,7 +420,7 @@ public:
 
 	/**
 	 * line-plane intersection
-	 * http://mathworld.wolfram.com/Line-PlaneIntersection.html
+	 * @see http://mathworld.wolfram.com/Line-PlaneIntersection.html
 	 */
 	bool intersect(const Plane<T>& plane, T& t, T eps = tl::get_epsilon<T>()) const
 	{
@@ -450,7 +463,7 @@ public:
 
 	/**
 	 * line-line intersection
-	 * see e.g.: https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
+	 * @see e.g.: https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
 	 *
 	 * pos0 + t0*dir0 = pos1 + t1*dir1
 	 * pos0 - pos1 = t1*dir1 - t0*dir0
@@ -716,7 +729,6 @@ void sort_poly_verts(t_cont<t_vec>& vecPoly)
 }
 
 
-
 /**
  * get the polygon's face normal vector
  */
@@ -873,6 +885,11 @@ t_cont<t_cont<t_vec>> verts_to_polyhedron(
 //------------------------------------------------------------------------------
 
 
+/**
+ * quadric
+ * @see e.g.: (Arens 2015), ch. 21
+ * @see e.g.: (Merziger 1993), p. 224
+ */
 template<class T = double>
 class Quadric
 {
@@ -922,10 +939,11 @@ public:
 
 	/**
 	 * get the classification of the quadric
-	 * @see: https://mathworld.wolfram.com/QuadraticSurface.html
-	 * @returns: [rank, rank_ext, signature, signature_ext]
+	 * @see https://mathworld.wolfram.com/QuadraticSurface.html
+	 * @returns [rank, rank_ext, signature, signature_ext]
 	 */
-	std::tuple<int,int, int,int,int, int,int,int> ClassifyQuadric(T eps = tl::get_epsilon<T>()) const
+	std::tuple<int,int, int,int,int, int,int,int>
+	ClassifyQuadric(T eps = tl::get_epsilon<T>()) const
 	{
 		// extended matrix
 		t_mat Qext = m_Q;
